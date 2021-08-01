@@ -1,6 +1,6 @@
 import React from 'react';
 
-function App() {
+function Index() {
   return (
     <div className="App bg-gray-000 min-h-screen">
       <header className="w-full px-4 py-16 text-center">
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default Index;
