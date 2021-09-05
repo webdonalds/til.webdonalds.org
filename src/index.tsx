@@ -8,6 +8,7 @@ import PrivateRoute from './component/PrivateRoute';
 import Index from './pages/Index';
 import AdminIndex from "./pages/admin/Index";
 import CallbackSignIn from "./pages/callback/SignIn";
+import Post from "./pages/posts/Post";
 
 export const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Switch>
             <PrivateRoute path="/admin" component={AdminIndex} />
             <Route path="/callback/signin" component={CallbackSignIn} />
+            <Route path="/posts/:id" component={Post} />
             <Route path="/" component={Index} exact />
           </Switch>
         </Router>
