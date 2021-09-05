@@ -1,14 +1,17 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import ReactMarkdown from 'react-markdown';
+import { RouteComponentProps } from "react-router-dom";
 import { PostResponse } from '../../lib/server';
 import { query } from '../../lib/server/query';
-import { RouteComponentProps } from "react-router-dom";
-import Skeleton from 'react-loading-skeleton';
 
-async function queryPost(postId: Number): Promise<PostResponse | null> {
+async function queryPost(postId?: Number): Promise<PostResponse | null> {
+  const filter = postId ?
+    `where: { id: { _eq: ${postId} } }` :
+    `order_by: { id: desc }, limit: 1`;
   const data = await query<{ til_posts: PostResponse[] }>(`
     query {
-      til_posts(where: { id: { _eq: ${postId} } }) {
+      til_posts(${filter}) {
         id
         title
         content
@@ -25,7 +28,7 @@ async function queryPost(postId: Number): Promise<PostResponse | null> {
       }
     }`
   );
-  return data.data.til_posts.length === 1 ? data.data.til_posts[0] : null;
+  return data.data.til_posts?.length === 1 ? data.data.til_posts[0] : null;
 }
 
 class Post extends Component<RouteComponentProps, { post: PostResponse | null, loaded: Boolean }> {
@@ -44,15 +47,15 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
 
   render() {
     const { loaded, post } = this.state;
-    let content: ReactElement;
     if (loaded && !post) {
-      content =
+      return (
         <div className="text-center">
           <p className="m-8 text-8xl">✋</p>
           <p className="m-4 font-bold text-2xl">해당하는 주소를 찾을 수 없어요.</p>
         </div>
+      );
     } else {
-      content =
+      return (
         <div className="bg-white rounded-xl shadow-lg">
           {post ? (
             <div>
@@ -79,17 +82,8 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
             </div>
           )}
         </div>
+      );
     }
-
-    return (
-      <div className="max-w-6xl mx-auto px-2 md:px-4">
-        <div className="px-4 py-12 md:py-16">
-          <p className="text-4xl md:text-5xl font-bold text-gray-900">Today I Learned</p>
-        </div>
-
-        {content}
-      </div>
-    );
   }
 }
 
