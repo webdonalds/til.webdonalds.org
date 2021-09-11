@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { createBrowserHistory } from 'history';
 import './index.css';
-import { Header } from "./component/Header";
+import { Header } from './component/Header';
 import PrivateRoute from './component/PrivateRoute';
-import AdminIndex from "./pages/admin/Index";
-import CallbackSignIn from "./pages/callback/SignIn";
-import Post from "./pages/posts/Post";
+import Index from './pages/Index';
+import AdminIndex from './pages/admin/Index';
+import CallbackSignIn from './pages/callback/SignIn';
+import Post from './pages/posts/Post';
 
 export const history = createBrowserHistory();
 
@@ -30,9 +31,7 @@ ReactDOM.render(
               <PrivateRoute path="/admin" component={AdminIndex} />
               <Route path="/callback/signin" component={CallbackSignIn} />
               <Route path="/posts/:id?" component={Post} />
-              <Route path="/" exact>
-                <Redirect to="/posts" />
-              </Route>
+              <Route path="/" component={Index} exact />
             </Switch>
           </Router>
         </div>
