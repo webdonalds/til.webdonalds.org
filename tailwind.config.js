@@ -5,11 +5,14 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-  purge: ['./src/**/*.(js,jsx,ts,tsx)'],
-  darkMode: 'class',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false,
   theme: {
     fontFamily: {
-      sans: ['Pretendard', 'sans-serif'],
+      sans: [
+        'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', '"Helvetica Neue"',
+        '"Segoe UI"', '"Apple SD Gothic Neo"', '"Noto Sans KR"', '"Malgun Gothic"', 'sans-serif',
+      ],
     },
     extend: {
       colors: {
