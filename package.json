@@ -40,7 +40,8 @@
     ],
     "rules": {
       "object-curly-spacing": ["error", "always"],
-      "quotes": ["error", "single"]
+      "quotes": ["error", "single"],
+      "semi": [2, "always"]
     }
   },
   "browserslist": {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import ReactMarkdown from 'react-markdown';
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from 'react-router-dom';
 import { PostResponse } from '../../lib/server';
 import { query } from '../../lib/server/query';
 
 async function queryPost(postId?: Number): Promise<PostResponse | null> {
   const filter = postId ?
     `where: { id: { _eq: ${postId} } }` :
-    `order_by: { id: desc }, limit: 1`;
+    'order_by: { id: desc }, limit: 1';
   const data = await query<{ til_posts: PostResponse[] }>(`
     query {
       til_posts(${filter}) {
@@ -42,7 +42,7 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
     this.setState({
       post: await queryPost(parseInt(id)),
       loaded: true,
-    })
+    });
   }
 
   render() {

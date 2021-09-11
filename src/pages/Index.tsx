@@ -82,7 +82,7 @@ class Index extends Component<RouteComponentProps, { posts: PostResponse[], load
         )
         }
       </div>
-    )
+    );
   }
 }
 

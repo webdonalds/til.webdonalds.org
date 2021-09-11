@@ -20,7 +20,7 @@ ReactDOM.render(
       clientId="HEZpsp1uFFKuhAkiYgMygS2wD0GlEC3f"
       redirectUri={`${window.location.origin}/callback/signin`}
       onRedirectCallback={(appState) => {
-        history.replace(appState?.returnTo || window.location.pathname)
+        history.replace(appState?.returnTo || window.location.pathname);
       }}
     >
       <div className="min-h-screen bg-gray-000 text-gray-700 text-lg">

@@ -15,7 +15,7 @@ function SignIn(props: RouteComponentProps) {
           <p className="m-4 font-bold text-2xl">{message[1]}</p>
         </div>
       </div>
-    )
+    );
   }
 
   return null;
