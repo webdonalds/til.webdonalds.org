@@ -1,8 +1,10 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import qs from 'query-string';
 
 function SignIn(props: RouteComponentProps) {
+  const { logout } = useAuth0();
   const query = qs.parse(props.location.search);
   if (query.error === 'unauthorized') {
     const message = (query.error_description === 'email_not_verified') ?
@@ -13,6 +15,7 @@ function SignIn(props: RouteComponentProps) {
         <div className="text-center">
           <p className="m-8 text-8xl">{message[0]}</p>
           <p className="m-4 font-bold text-2xl">{message[1]}</p>
+          <button onClick={() => logout({ returnTo: window.location.origin })}>로그아웃</button>
         </div>
       </div>
     );
