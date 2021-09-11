@@ -8,6 +8,7 @@ import { Header } from './component/Header';
 import PrivateRoute from './component/PrivateRoute';
 import Index from './pages/Index';
 import AdminIndex from './pages/admin/Index';
+import ModifyProfile from './pages/admin/ModifyProfile';
 import CallbackSignIn from './pages/callback/SignIn';
 import Post from './pages/posts/Post';
 
@@ -18,6 +19,8 @@ ReactDOM.render(
     <Auth0Provider
       domain="webdonalds.jp.auth0.com"
       clientId="HEZpsp1uFFKuhAkiYgMygS2wD0GlEC3f"
+      audience="https://webdonalds.jp.auth0.com/api/v2/"
+      scope="read:current_user"
       redirectUri={`${window.location.origin}/callback/signin`}
       onRedirectCallback={(appState) => {
         history.replace(appState?.returnTo || window.location.pathname);
@@ -28,6 +31,7 @@ ReactDOM.render(
           <Header />
           <Router history={history}>
             <Switch>
+              <PrivateRoute path="/admin/profile" component={ModifyProfile} />
               <PrivateRoute path="/admin" component={AdminIndex} />
               <Route path="/callback/signin" component={CallbackSignIn} />
               <Route path="/posts/:id?" component={Post} />

@@ -1,9 +1,9 @@
 import React, { ComponentType } from 'react';
-import { Route, RouteProps } from 'react-router-dom';
+import { Route, RouteComponentProps, RouteProps } from 'react-router-dom';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 interface PrivateRouteProps extends RouteProps {
-  component: ComponentType,
+  component: ComponentType<RouteComponentProps>;
 }
 
 const PrivateRoute = ({ component, path, ...args } : PrivateRouteProps) => (
