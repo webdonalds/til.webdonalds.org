@@ -1,7 +1,8 @@
-import React, { ChangeEvent, Component } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import React, { ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
-import { withAuth0, WithAuth0Props } from '@auth0/auth0-react';
+import { withAuth0 } from '@auth0/auth0-react';
+import { RouteWithAuth0Component, RouteWithAuth0Props } from '../../component/RouteWithAuth0Props';
 import { UserResponse } from '../../lib/server';
 import { query } from '../../lib/server/query';
 
@@ -10,18 +11,10 @@ interface ModifyProfileState {
   saving: boolean;
 }
 
-class ModifyProfile extends Component<WithAuth0Props & RouteComponentProps, ModifyProfileState> {
-  constructor(props: WithAuth0Props & RouteComponentProps) {
+class ModifyProfile extends RouteWithAuth0Component<RouteWithAuth0Props, ModifyProfileState> {
+  constructor(props: RouteWithAuth0Props) {
     super(props);
     this.state = { me: null, saving: false };
-  }
-
-  async generateToken(): Promise<string> {
-    const { getAccessTokenSilently } = this.props.auth0;
-    return getAccessTokenSilently({
-      audience: 'https://webdonalds.jp.auth0.com/api/v2/',
-      scope: 'read:current_user',
-    });
   }
 
   async getMe(): Promise<UserResponse | null> {

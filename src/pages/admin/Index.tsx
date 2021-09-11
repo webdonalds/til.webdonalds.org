@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { withAuth0, WithAuth0Props } from '@auth0/auth0-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { withAuth0 } from '@auth0/auth0-react';
+import { RouteWithAuth0Component, RouteWithAuth0Props } from '../../component/RouteWithAuth0Props';
 
-class Index extends Component<WithAuth0Props & RouteComponentProps> {
+class Index extends RouteWithAuth0Component<RouteWithAuth0Props, any> {
   render() {
     const { logout } = this.props.auth0;
     return (
