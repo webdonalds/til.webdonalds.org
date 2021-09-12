@@ -17,18 +17,6 @@ class ModifyProfile extends RouteWithAuth0Component<RouteWithAuth0Props, ModifyP
     this.state = { me: null, saving: false };
   }
 
-  async getMe(): Promise<UserResponse | null> {
-    const data = await query<{ til_users: UserResponse[] }>(`
-      query {
-        til_users(where: { auth_id: { _eq: "{{ user.auth_id }}" } }) {
-          display_name
-          profile_image
-        }
-      }
-    `, await this.generateToken());
-    return data.data.til_users?.length === 1 ? data.data.til_users[0] : null;
-  }
-
   componentDidMount() {
     this.getMe().then((user) => { this.setState({ me: user }); });
   }
@@ -48,7 +36,7 @@ class ModifyProfile extends RouteWithAuth0Component<RouteWithAuth0Props, ModifyP
     const { display_name, profile_image } = this.state.me!;
     await query<{}>(`
       mutation {
-        update_til_users(
+        update_webdonalds_users(
           where: { auth_id: { _eq: "{{ user.auth_id }}" } },
           _set: {
             display_name: "${display_name}"
