@@ -1,4 +1,5 @@
 export interface UserResponse {
+  id: number;
   display_name: string;
   profile_image?: string;
 }

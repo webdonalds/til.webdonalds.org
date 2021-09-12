@@ -16,10 +16,11 @@ export class RouteWithAuth0Component<P extends RouteWithAuth0Props, S> extends C
     });
   }
 
-  async getMe(): Promise<UserResponse | null> {
+  async getMe(): Promise<UserResponse> {
     const data = await query<{ webdonalds_users: UserResponse[] }>(`
       query {
         webdonalds_users(where: { auth_id: { _eq: "{{ user.auth_id }}" } }) {
+          id
           display_name
           profile_image
         }

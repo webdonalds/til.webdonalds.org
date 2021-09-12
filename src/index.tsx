@@ -8,6 +8,7 @@ import { Header } from './component/Header';
 import PrivateRoute from './component/PrivateRoute';
 import Index from './pages/Index';
 import AdminIndex from './pages/admin/Index';
+import ModifyPost from './pages/admin/ModifyPost';
 import ModifyProfile from './pages/admin/ModifyProfile';
 import CallbackSignIn from './pages/callback/SignIn';
 import Post from './pages/posts/Post';
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Header />
           <Router history={history}>
             <Switch>
+              <PrivateRoute path="/admin/posts/:id?" component={ModifyPost} />
               <PrivateRoute path="/admin/profile" component={ModifyProfile} />
               <PrivateRoute path="/admin" component={AdminIndex} />
               <Route path="/callback/signin" component={CallbackSignIn} />

@@ -6,6 +6,7 @@
     "@auth0/auth0-react": "^1.6.0",
     "@craco/craco": "^6.2.0",
     "@tailwindcss/forms": "^0.3.3",
+    "@toast-ui/react-editor": "^3.1.0",
     "node-fetch": "^2.6.1",
     "query-string": "^7.0.1",
     "react": "^17.0.2",

@@ -57,23 +57,23 @@ class ModifyProfile extends RouteWithAuth0Component<RouteWithAuth0Props, ModifyP
     const { me, saving } = this.state;
     return (
       <div>
-        <p className="py-4 text-4xl font-bold text-gray-900">프로필 편집</p>
+        <p className="py-4 text-4xl font-bold text-gray-900">프로필 바꾸기</p>
         {me ? (
             <div>
               <form>
                 <label className="block py-2">
-                  <span className="my-2">닉네임</span>
+                  <span className="my-2">이름</span>
                   <input className="block rounded" type="text" value={me.display_name}
                          onChange={this.handleDisplayNameChange} />
                 </label>
                 <label className="block py-2">
-                  <span className="my-2">프로필 이미지</span>
+                  <span className="my-2">프로필 사진</span>
                   <input className="block rounded w-full" type="text" value={me.profile_image}
                          onChange={this.handleProfileImageChange} />
                 </label>
                 {me.profile_image ? (
                     <div className="py-2">
-                      <span className="my-2">프로필 이미지 미리보기</span>
+                      <span className="my-2">프로필 사진 미리보기</span>
                       <img className="h-20 w-20 rounded-full" src={me.profile_image}
                            alt="프로필 이미지를 불러올 수 없어요." />
                     </div>
