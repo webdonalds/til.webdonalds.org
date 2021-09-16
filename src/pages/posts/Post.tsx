@@ -74,8 +74,12 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
             {post ? (
               <div>
                 <div className="px-6 md:px-8 py-8 border-b border-gray-300">
-                  <p className="text-sm space-x-1">
-                    {post.tags.map(tag => <span>#{tag.tag.name}</span>)}
+                  <p className="text-sm space-x-2">
+                    {post.tags.map(tag => (
+                      <Link to={`/?tag=${tag.tag.slug}`}>
+                        <span className="hover:underline">#{tag.tag.name}</span>
+                      </Link>
+                    ))}
                   </p>
                   <p className="py-2 text-2xl font-bold text-gray-900">{post.title}</p>
                   <div className="prose max-w-none">
