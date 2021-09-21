@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { PostResponse } from '../../lib/server';
 import { query } from '../../lib/server/query';
 
@@ -73,6 +74,13 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
           <div className="bg-white rounded-xl shadow-lg">
             {post ? (
               <div>
+                <Helmet>
+                  <title>{post.title} - TIL by WebDonalds</title>
+                  <meta property="og:title" content={post.title} />
+                  <meta property="og:type" content="article" />
+                  <meta property="og:url" content={window.location.href} />
+                </Helmet>
+
                 <div className="px-6 md:px-8 py-8 border-b border-gray-300">
                   <p className="text-sm space-x-2">
                     {post.tags.map(tag => (
