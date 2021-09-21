@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { PostResponse } from '../../lib/server';
 import { query } from '../../lib/server/query';
+import Utterances from '../../component/utterances/Utterances';
 
 async function queryPost(postId?: Number): Promise<PostResponse | null> {
   const filter = postId ?
@@ -107,6 +108,10 @@ class Post extends Component<RouteComponentProps, { post: PostResponse | null, l
                 <Skeleton count={5}/>
               </div>
             )}
+          </div>
+
+          <div className="py-8">
+            {post ? <Utterances /> : null}
           </div>
         </>
       );
