@@ -22,7 +22,7 @@ async function queryPosts(filter: PostListFilter): Promise<PostResponse[]> {
   ].filter((it) => it) as string[]);
 
   const data = await query<{ til_posts: PostResponse[] }>(`
-    query {
+    query @cached {
       til_posts(limit: 10, order_by: { id: desc }, where: ${where}) {
         id
         title

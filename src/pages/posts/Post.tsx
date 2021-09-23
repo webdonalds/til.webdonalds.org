@@ -13,7 +13,7 @@ async function queryPost(postId?: Number): Promise<PostResponse | null> {
     `where: { id: { _eq: ${postId} } }` :
     'order_by: { id: desc }, limit: 1';
   const data = await query<{ til_posts: PostResponse[] }>(`
-    query {
+    query @cached {
       til_posts(${filter}) {
         id
         title
