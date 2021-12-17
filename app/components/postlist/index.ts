@@ -1,5 +1,3 @@
 import { PostItem } from "./PostItem";
 
-export {
-  PostItem,
-};
+export { PostItem };

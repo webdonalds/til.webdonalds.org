@@ -1,7 +1,6 @@
 module.exports = {
   mode: "jit",
-  purge: ["./app/**/*.{ts,tsx}"],
-  darkMode: false,
+  content: ["./app/**/*.{ts,tsx}"],
   theme: {
     fontFamily: {
       sans: [

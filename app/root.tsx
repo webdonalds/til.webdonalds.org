@@ -6,7 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch
+  useCatch,
 } from "remix";
 import type { LinksFunction } from "remix";
 import tailwindUrl from "./styles/tailwind.css";
@@ -14,7 +14,10 @@ import tailwindUrl from "./styles/tailwind.css";
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindUrl },
-    { rel: "stylesheet", href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" },
+    {
+      rel: "stylesheet",
+      href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css",
+    },
   ];
 };
 
@@ -88,7 +91,7 @@ export function CatchBoundary() {
 
 function Document({
   children,
-  title
+  title,
 }: {
   children: React.ReactNode;
   title?: string;
@@ -115,9 +118,7 @@ function Document({
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-000 text-gray-700 text-lg">
-      <div className="max-w-6xl mx-auto px-2 md:px-4">
-        {children}
-      </div>
+      <div className="max-w-6xl mx-auto px-2 md:px-4">{children}</div>
     </div>
   );
 }
