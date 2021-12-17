@@ -9,6 +9,14 @@ import {
   useCatch
 } from "remix";
 import type { LinksFunction } from "remix";
+import tailwindUrl from "./styles/tailwind.css";
+
+export const links: LinksFunction = () => {
+  return [
+    { rel: "stylesheet", href: tailwindUrl },
+    { rel: "stylesheet", href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" },
+  ];
+};
 
 // https://remix.run/api/conventions#default-export
 // https://remix.run/api/conventions#route-filenames
