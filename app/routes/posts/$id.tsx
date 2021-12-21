@@ -3,6 +3,7 @@ import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
+import { ErrorMessage } from "~/components/error";
 
 type PostData = {
   til_posts: {
@@ -58,9 +59,8 @@ export function CatchBoundary() {
   const { status } = useCatch();
   const message = (status === 404) ? "해당하는 주소를 찾을 수 없어요." : "오류가 발생했어요";
   return (
-    <div className="p-8 bg-white rounded-xl shadow-lg text-center">
-      <p className="m-8 text-8xl">✋</p>
-      <p className="m-4 font-bold text-2xl">{message}</p>
+    <div className="bg-white rounded-xl shadow-lg">
+      <ErrorMessage emoji="✋" message={message} />
     </div>
   );
 }
