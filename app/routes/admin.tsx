@@ -1,5 +1,5 @@
 import { json, LoaderFunction, Outlet, useLoaderData } from "remix";
-import { Header } from "~/components/header";
+import { Header } from "~/components/organisms/header";
 import { authenticator } from "~/services/auth.server";
 import { AdminUser } from "~/models";
 

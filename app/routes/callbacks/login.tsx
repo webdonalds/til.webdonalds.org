@@ -1,5 +1,5 @@
 import { json, LoaderFunction, useCatch } from "remix";
-import { ErrorMessage } from "~/components/error";
+import { ErrorMessage } from "~/components/templates/error";
 import { authenticator } from "~/services/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {

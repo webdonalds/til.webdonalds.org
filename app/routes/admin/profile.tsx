@@ -8,7 +8,7 @@ import {
   useLoaderData,
   useTransition,
 } from "remix";
-import { Button } from "~/components/elements";
+import { Button } from "~/components/atoms";
 import { useState } from "react";
 import { gql } from "@urql/core";
 import { authenticator } from "~/services/auth.server";

@@ -3,7 +3,7 @@ import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
-import { ErrorMessage } from "~/components/error";
+import { ErrorMessage } from "~/components/templates/error";
 
 type PostData = {
   til_posts: {

@@ -1,7 +1,7 @@
 import { Form, json, Link, LoaderFunction, useLoaderData } from "remix";
 import { gql } from "@urql/core";
 import { client } from "~/lib/api/client";
-import { Button } from "~/components/elements";
+import { Button } from "~/components/atoms";
 import { authenticator } from "~/services/auth.server";
 
 type AdminIndexData = {

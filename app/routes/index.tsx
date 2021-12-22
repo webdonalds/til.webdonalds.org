@@ -1,8 +1,8 @@
 import type { MetaFunction, LoaderFunction } from "remix";
 import { useLoaderData, json, Link } from "remix";
 import { gql } from "@urql/core";
-import { Header } from "~/components/header";
-import { PostItem } from "~/components/postlist";
+import { Header } from "~/components/organisms/header";
+import { PostItem } from "~/components/organisms/postlist";
 import { client } from "~/lib/api/client";
 
 type IndexData = {

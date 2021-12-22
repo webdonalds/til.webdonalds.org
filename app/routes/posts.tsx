@@ -1,5 +1,5 @@
 import { Link, Outlet } from "remix";
-import { Header } from "~/components/header";
+import { Header } from "~/components/organisms/header";
 
 export default function PostIndex() {
   return (
