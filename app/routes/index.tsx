@@ -55,6 +55,7 @@ export default function Index() {
       <div className="my-8">
         {data.til_posts.map((post) => (
           <PostItem
+            key={`post-${post.id}`}
             post={{
               id: post.id,
               title: post.title,

@@ -1,13 +1,16 @@
+import { MouseEventHandler } from "react";
+
 type ButtonProp = {
   type?: "submit" | "button" | "reset";
   color?: ButtonColor;
   text: string;
   disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 type ButtonColor = "gray" | "red" | "blue";
 
-export default function Button({ color, text, type, disabled }: ButtonProp) {
+export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
   let bgClass;
   let shadowClass;
   let fontClass;
@@ -35,6 +38,7 @@ export default function Button({ color, text, type, disabled }: ButtonProp) {
       type={type}
       className={`px-4 py-2 ${bgClass} ${shadowClass} shadow-lg rounded-lg font-bold ${fontClass} ${opacityClass}`}
       disabled={disabled}
+      onClick={onClick}
     >
       {text}
     </button>

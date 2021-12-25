@@ -1,13 +1,13 @@
 import { Form, json, Link, LoaderFunction, useLoaderData } from "remix";
 import { gql } from "@urql/core";
-import { client } from "~/lib/api/client";
 import { Button } from "~/components/atoms";
+import { client } from "~/lib/api/client";
 import { authenticator } from "~/services/auth.server";
 
 type AdminIndexData = {
   til_posts: {
     id: number;
-    title: string
+    title: string;
   }[];
 };
 
@@ -17,10 +17,10 @@ type AdminIndexProp = {
 }[];
 
 const query = gql<AdminIndexData>`
-  query($authId: String) @cached {
+  query ($authId: String) @cached {
     til_posts(
-      where: { author: { auth_id: { _eq: $authId } } },
-      order_by: { id: asc },
+      where: { author: { auth_id: { _eq: $authId } } }
+      order_by: { id: asc }
     ) {
       id
       title
@@ -43,6 +43,9 @@ export default function AdminIndex() {
     <>
       <p className="text-4xl font-bold text-gray-900">관리자 화면</p>
       <div className="flex py-8 space-x-1">
+        <Link to="/admin/posts">
+          <Button text="새 글 쓰기" />
+        </Link>
         <Link to="/admin/profile">
           <Button text="프로필 편집" />
         </Link>
@@ -60,9 +63,7 @@ export default function AdminIndex() {
           <Link to={`/admin/posts/${post.id}`}>
             <Button text="편집" />
           </Link>
-          <span className="pl-2">
-            {post.title}
-          </span>
+          <span className="pl-2">{post.title}</span>
         </div>
       ))}
     </>

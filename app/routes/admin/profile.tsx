@@ -4,11 +4,9 @@ import {
   json,
   LoaderFunction,
   redirect,
-  useActionData,
   useLoaderData,
-  useTransition,
 } from "remix";
-import { Button } from "~/components/atoms";
+import { SubmitButtons } from "~/components/molecules/form";
 import { useState } from "react";
 import { gql } from "@urql/core";
 import { authenticator } from "~/services/auth.server";
@@ -26,10 +24,10 @@ type ProfileProp = {
   authId: string;
   displayName: string;
   profileImageUrl: string;
-}
+};
 
 const query = gql<ProfileData>`
-  query($authId: String) {
+  query ($authId: String) {
     webdonalds_users(where: { auth_id: { _eq: $authId } }) {
       auth_id
       display_name
@@ -39,7 +37,7 @@ const query = gql<ProfileData>`
 `;
 
 const mutation = gql`
-  mutation($authId: String, $displayName: String, $profileImageUrl: String) {
+  mutation ($authId: String, $displayName: String, $profileImageUrl: String) {
     update_webdonalds_users(
       where: { auth_id: { _eq: $authId } },
       _set: {
@@ -83,7 +81,6 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function ModifyProfile() {
-  const { state } = useTransition();
   const profile = useLoaderData<ProfileProp>();
   const [previewUrl, setPreviewUrl] = useState(profile.profileImageUrl);
   return (
@@ -108,17 +105,7 @@ export default function ModifyProfile() {
           </div>
         }
         <input name="authId" type="hidden" value={profile.authId} />
-        <p className="block py-2">
-          {state === "submitting" ?
-            <Button type="submit" text="저장중..." color="blue" disabled /> :
-            <Button type="submit" text="저장" color="blue" />
-          }
-          {useActionData()?.error &&
-            <span className="pl-2 text-red-800">
-              오류가 발생했어요. 잠시 후 다시 시도해주세요.
-            </span>
-          }
-        </p>
+        <SubmitButtons />
       </Form>
     </>
   );

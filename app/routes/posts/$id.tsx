@@ -14,7 +14,7 @@ type PostData = {
       profile_image: string;
     };
   }[];
-}
+};
 
 type PostProp = {
   title: string;
