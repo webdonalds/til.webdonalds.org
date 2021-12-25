@@ -1,0 +1,15 @@
+node_modules
+yarn-error.log
+
+/.cache
+/build
+/dist
+/public/build
+
+app/styles/tailwind.css
+
+.envrc
+.code
+.idea
+
+Dockerfile
