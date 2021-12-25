@@ -1,26 +1,30 @@
 # til.webdonalds.org
 
-> Today I Learned
-
-Visit [homepage](https://til.webdonalds.org).
+> Visit [website](https://til.webdonalds.org)!
 
 ## Development
 
+Developed with [Remix](https://remix.run). Required nodejs 16 or greater.
+
 ```shell
 yarn
-yarn start
+yarn dev
 ```
+
+Open up [http://127.0.0.1:3000].
+
+### Environment variables
+
+- `AUTH0_DOMAIN`
+- `AUTH0_CLIENT_ID`
+- `AUTH0_CLIENT_SECRET`
+- `AUTH0_CALLBACK_URL`
+- `AUTH0_LOGOUT_URL`
+- `HASURA_ADMIN_SECRET`
 
 ## Deployment
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/97f61d46-dba2-402a-927a-60a76b685798/deploy-status)](https://app.netlify.com/sites/eloquent-bartik-e289ea/deploys)
-
-We use [Netlify](https://netlify.com) to deployment pages. Push the `main` branch to make a deployment.
-
 ```shell
-yarn
 yarn build
-
-yarn global add serve
-serve -s build
+yarn start
 ```

@@ -1,74 +1,41 @@
 {
-  "name": "til.webdonalds.org",
-  "version": "0.1.0",
   "private": true,
+  "name": "til-by-webdonalds",
+  "description": "",
+  "license": "",
+  "scripts": {
+    "postinstall": "remix setup node",
+    "build": "yarn build:css && remix build",
+    "build:css": "tailwindcss -i ./app/root.css -o ./app/styles/tailwind.css --config ./config/tailwind.js --minify",
+    "dev": "concurrently \"yarn dev:css\" \"remix dev\"",
+    "dev:css": "tailwindcss -i ./app/root.css -o ./app/styles/tailwind.css --config ./config/tailwind.js --watch",
+    "start": "remix-serve build"
+  },
   "dependencies": {
-    "@auth0/auth0-react": "^1.6.0",
-    "@craco/craco": "^6.2.0",
-    "@tailwindcss/forms": "^0.3.3",
-    "@toast-ui/react-editor": "^3.1.0",
-    "node-fetch": "^2.6.1",
-    "query-string": "^7.0.1",
+    "@remix-run/react": "^1.1.1",
+    "@remix-run/serve": "^1.1.1",
+    "@urql/core": "^2.3.6",
+    "graphql": "^16.1.0",
+    "marked": "^4.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-loading-skeleton": "^2.2.0",
-    "react-markdown": "^7.0.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "uuid": "^8.3.2"
+    "remix": "^1.1.1",
+    "remix-auth": "^2.5.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.4.1",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/node-fetch": "^2.5.12",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-helmet": "^6.1.2",
-    "@types/react-router-dom": "^5.1.8",
-    "@types/uuid": "^8.3.1",
-    "autoprefixer": "^9",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "@remix-run/dev": "^1.1.1",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "@types/marked": "^4.0.1",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "concurrently": "^6.5.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.6",
+    "typescript": "^4.1.2"
   },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{ts,tsx}"
+  "engines": {
+    "node": ">=16"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "rules": {
-      "object-curly-spacing": [
-        "error",
-        "always"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        2,
-        "always"
-      ]
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "sideEffects": false
 }

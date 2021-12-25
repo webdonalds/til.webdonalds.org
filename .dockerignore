@@ -11,3 +11,5 @@ app/styles/tailwind.css
 .envrc
 .code
 .idea
+
+Dockerfile
