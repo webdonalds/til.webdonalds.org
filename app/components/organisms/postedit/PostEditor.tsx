@@ -24,7 +24,7 @@ export function PostEditor({
   const [content, setContent] = useState<string>(defaultContent || "");
   return (
     <>
-      <div className={`${mode === "edit" ? "" : "hidden"} dark:text-gray-700`}>
+      <div className={mode === "edit" ? "" : "hidden"}>
         <LabeledInput
           name="title"
           type="text"

@@ -8,8 +8,9 @@ import {
 } from "remix";
 import { useState } from "react";
 import { gql } from "@urql/core";
-import { SubmitButtons } from "~/components/molecules/form";
+import { LabelText } from "~/components/atoms/form";
 import { HeadingSubtitle } from "~/components/atoms/heading";
+import { LabeledInput, SubmitButtons } from "~/components/molecules/form";
 import { client } from "~/lib/api/client";
 import { authenticator } from "~/services/auth.server";
 
@@ -88,20 +89,18 @@ export default function ModifyProfile() {
     <>
       <HeadingSubtitle>프로필 편집</HeadingSubtitle>
       <Form method="post">
-        <label className="block py-2">
-          <span className="my-2">이름</span>
-          <input className="block rounded" name="displayName" type="text" defaultValue={profile.displayName} />
-        </label>
-        <label className="block py-2">
-          <span className="my-2">프로필 사진 URL</span>
-          <input
-            className="block rounded w-full" name="profileImageUrl" type="text"
-            defaultValue={profile.profileImageUrl} onChange={(e) => setPreviewUrl(e.target.value)}
-          />
-        </label>
+        <LabeledInput
+          name="displayName" type="text" label="이름"
+          defaultValue={profile.displayName}
+        />
+        <LabeledInput
+          name="profileImageUrl" type="text" label="프로필 사진 URL"
+          defaultValue={profile.profileImageUrl}
+          onChange={(e) => setPreviewUrl(e.target.value)}
+        />
         {previewUrl &&
           <div className="py-2">
-            <span className="my-2">프로필 사진 미리보기</span>
+            <LabelText>프로필 사진 미리보기</LabelText>
             <img className="h-20 w-20 rounded-full" src={previewUrl} alt="프로필 사진 미리보기" />
           </div>
         }

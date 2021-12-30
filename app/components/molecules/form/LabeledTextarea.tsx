@@ -22,7 +22,7 @@ export function LabeledTextarea({
     <label className="block py-4">
       <LabelText>{label}</LabelText>
       <textarea
-        className={`${className || ""} w-full block rounded`}
+        className={`${className || ""} w-full block rounded text-gray-700`}
         name={name}
         rows={rows}
         defaultValue={defaultValue}

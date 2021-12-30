@@ -20,7 +20,7 @@ export function LabeledInput({
     <label className="block py-4">
       <LabelText>{label}</LabelText>
       <input
-        className="w-full block rounded"
+        className="w-full block rounded text-gray-700"
         name={name}
         type={type}
         defaultValue={defaultValue}
