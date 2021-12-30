@@ -24,7 +24,7 @@ export function PostEditor({
   const [content, setContent] = useState<string>(defaultContent || "");
   return (
     <>
-      <div className={mode === "edit" ? undefined : "hidden"}>
+      <div className={`${mode === "edit" ? "" : "hidden"} dark:text-gray-700`}>
         <LabeledInput
           name="title"
           type="text"
@@ -34,7 +34,7 @@ export function PostEditor({
         <LabeledTextarea
           name="content"
           label="본문"
-          rows={10}
+          rows={20}
           defaultValue={content}
           onChange={(e) => setContent(e.target.value)}
         />
@@ -42,9 +42,9 @@ export function PostEditor({
       <input type="hidden" name="authorId" value={authorId} />
 
       <div className={mode === "edit" ? "hidden" : undefined}>
-        <div className="p-8 bg-white rounded-xl shadow-lg">
+        <div className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
           <div
-            className="prose max-w-none"
+            className="prose dark:prose-dark max-w-none"
             dangerouslySetInnerHTML={{ __html: marked(content) }}
           />
         </div>

@@ -18,6 +18,7 @@ export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
     case "gray":
       bgClass = "bg-gray-300";
       shadowClass = "shadow-gray-300/50";
+      fontClass = "text-gray-700";
       break;
     case "red":
       bgClass = "bg-red-500";

@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from "react";
+import { LabelText } from "~/components/atoms/form";
 
 type InputProp = {
   className?: string | undefined;
@@ -19,7 +20,7 @@ export function LabeledTextarea({
 }: InputProp) {
   return (
     <label className="block py-4">
-      <p className="font-bold">{label}</p>
+      <LabelText>{label}</LabelText>
       <textarea
         className={`${className || ""} w-full block rounded`}
         name={name}

@@ -1,6 +1,7 @@
 import type { MetaFunction, LoaderFunction } from "remix";
 import { useLoaderData, json, Link } from "remix";
 import { gql } from "@urql/core";
+import { HeadingTitle } from "~/components/atoms/heading";
 import { Header } from "~/components/organisms/header";
 import { PostItem } from "~/components/organisms/postlist";
 import { client } from "~/lib/api/client";
@@ -51,7 +52,7 @@ export default function Index() {
   return (
     <>
       <Header />
-      <p className="text-4xl font-bold text-gray-900">최신 글</p>
+      <HeadingTitle>최신 글</HeadingTitle>
       <div className="my-8">
         {data.til_posts.map((post) => (
           <PostItem

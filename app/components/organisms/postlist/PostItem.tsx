@@ -24,7 +24,7 @@ export const PostItem = ({ post }: { post: PostItemProp }) => (
 
     {/* 제목 영역 */}
     <Link to={`/posts/${post.id}`}>
-      <p className="my-2 text-2xl font-bold hover:text-gray-900 hover:underline transition">
+      <p className="my-2 text-2xl font-bold hover:opacity-75 hover:underline transition">
         {post.title}
       </p>
     </Link>

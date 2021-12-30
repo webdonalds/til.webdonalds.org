@@ -3,6 +3,7 @@ import { gql } from "@urql/core";
 import { PostEditor } from "~/components/organisms/postedit";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { client } from "~/lib/api/client";
+import { HeadingSubtitle } from "~/components/atoms/heading";
 
 const mutation = gql`
   mutation($title: String, $content: String, $authorId: bigint) {
@@ -36,7 +37,7 @@ export default function CreatePost() {
   const { id: authorId } = useOutletContext<AdminUserContext>();
   return (
     <>
-      <p className="py-4 text-2xl font-bold text-gray-900">새 글 쓰기</p>
+      <HeadingSubtitle>새 글 쓰기</HeadingSubtitle>
       <Form method="post">
         <PostEditor authorId={authorId} />
       </Form>

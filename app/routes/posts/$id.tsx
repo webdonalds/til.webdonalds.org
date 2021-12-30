@@ -68,12 +68,12 @@ export function CatchBoundary() {
 export default function Post() {
   const { title, content, author } = useLoaderData<PostProp>();
   return (
-    <div className="bg-white rounded-xl shadow-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
       <div className="px-6 md:px-8 py-8 border-b border-gray-100">
-        <p className="py-2 text-2xl font-bold text-gray-900">
+        <p className="py-2 text-2xl font-bold text-gray-900 dark:text-gray-100">
           {title}
         </p>
-        <article className="prose max-w-none">
+        <article className="prose dark:prose-dark max-w-none">
           <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
         </article>
       </div>

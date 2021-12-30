@@ -6,11 +6,12 @@ import {
   redirect,
   useLoaderData,
 } from "remix";
-import { SubmitButtons } from "~/components/molecules/form";
 import { useState } from "react";
 import { gql } from "@urql/core";
-import { authenticator } from "~/services/auth.server";
+import { SubmitButtons } from "~/components/molecules/form";
+import { HeadingSubtitle } from "~/components/atoms/heading";
 import { client } from "~/lib/api/client";
+import { authenticator } from "~/services/auth.server";
 
 type ProfileData = {
   webdonalds_users: {
@@ -85,7 +86,7 @@ export default function ModifyProfile() {
   const [previewUrl, setPreviewUrl] = useState(profile.profileImageUrl);
   return (
     <>
-      <p className="py-4 text-2xl font-bold text-gray-900">프로필 편집</p>
+      <HeadingSubtitle>프로필 편집</HeadingSubtitle>
       <Form method="post">
         <label className="block py-2">
           <span className="my-2">이름</span>

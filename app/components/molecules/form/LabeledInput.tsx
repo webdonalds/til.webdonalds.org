@@ -1,4 +1,5 @@
 import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import { LabelText } from "~/components/atoms/form";
 
 type InputProp = {
   name: string;
@@ -17,7 +18,7 @@ export function LabeledInput({
 }: InputProp) {
   return (
     <label className="block py-4">
-      <p className="font-bold">{label}</p>
+      <LabelText>{label}</LabelText>
       <input
         className="w-full block rounded"
         name={name}

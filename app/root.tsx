@@ -117,7 +117,7 @@ function Document({
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-700 text-lg">
+    <div className="min-h-screen bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-300 text-lg">
       <div className="max-w-6xl mx-auto px-2 md:px-4">{children}</div>
     </div>
   );

@@ -11,6 +11,7 @@ import { gql } from "@urql/core";
 import { PostEditor } from "~/components/organisms/postedit";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { client } from "~/lib/api/client";
+import { HeadingSubtitle } from "~/components/atoms/heading";
 
 type PostProp = {
   title: string;
@@ -79,7 +80,7 @@ export default function CreatePost() {
   const { title, content } = useLoaderData<PostProp>();
   return (
     <>
-      <p className="py-4 text-2xl font-bold text-gray-900">글 고치기</p>
+      <HeadingSubtitle>글 고치기</HeadingSubtitle>
       <Form method="post">
         <PostEditor
           defaultTitle={title}
