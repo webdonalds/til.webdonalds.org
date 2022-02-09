@@ -1,6 +1,7 @@
-import { json, LoaderFunction, useCatch } from "remix";
+import { Form, json, LoaderFunction, useCatch } from "remix";
 import { ErrorMessage } from "~/components/templates/error";
 import { authenticator } from "~/services/auth.server";
+import { Button } from "~/components/atoms";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -28,7 +29,14 @@ export function CatchBoundary() {
       message = "이 서비스는 허용된 사용자만 이용할 수 있어요.";
       break;
   }
-  return <ErrorMessage emoji={emoji} message={message} />;
+  return (
+    <>
+      <ErrorMessage emoji={emoji} message={message} />
+      <Form className="text-center" action="/callbacks/logout" method="post">
+        <Button text="로그아웃" color="red" />
+      </Form>
+    </>
+  );
 }
 
 export default function LoginCallback() {
