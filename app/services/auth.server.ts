@@ -1,6 +1,6 @@
 import { Auth0Strategy, Authenticator } from "remix-auth";
 import { sessionStorage } from "~/services/session.server";
-import { AdminUser } from "~/models";
+import { Auth0User } from "~/models";
 
 export const auth0Config = {
   domain: process.env.AUTH0_DOMAIN!!,
@@ -10,11 +10,14 @@ export const auth0Config = {
   logoutURL: process.env.AUTH0_LOGOUT_URL!!,
 };
 
-export const authenticator = new Authenticator<AdminUser>(sessionStorage);
+export const authenticator = new Authenticator<Auth0User>(sessionStorage);
 
 authenticator.use(
-  new Auth0Strategy<AdminUser>(auth0Config, async (_1, _2, _3, profile) => {
-    return { id: profile.id };
+  new Auth0Strategy<Auth0User>(auth0Config, async (_1, _2, _3, profile) => {
+    return {
+      id: profile.id,
+      displayName: profile.displayName,
+    };
   }),
   "auth0",
 );
