@@ -20,6 +20,7 @@ type IndexData = {
       display_name: string;
       profile_image: string;
     };
+    created_at: string;
   }[];
 };
 
@@ -38,6 +39,7 @@ const query = gql<IndexData>`
         display_name
         profile_image
       }
+      created_at
     }
   }
 `;
@@ -50,7 +52,7 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const data = useLoaderData<IndexData>();
   return (
-    <>
+    <div className="px-2">
       <Header />
       <HeadingTitle>최신 글</HeadingTitle>
       <div className="my-8">
@@ -65,10 +67,11 @@ export default function Index() {
                 profileUrl: post.author.profile_image,
               },
               tags: post.tags.map((t) => t.tag),
+              createdAt: new Date(post.created_at),
             }}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
