@@ -18,7 +18,7 @@ type AdminIndexProp = {
 }[];
 
 const query = gql<AdminIndexData>`
-  query ($authId: String) @cached {
+  query ($authId: String) {
     til_posts(
       where: { author: { auth_id: { _eq: $authId } } }
       order_by: { id: asc }
