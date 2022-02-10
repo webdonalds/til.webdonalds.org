@@ -4,6 +4,7 @@ import { gql } from "@urql/core";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
 import { ErrorMessage } from "~/components/templates/error";
+import {HeadingSubtitle} from "~/components/atoms/heading";
 
 type PostData = {
   til_posts: {
@@ -68,20 +69,22 @@ export function CatchBoundary() {
 export default function Post() {
   const { title, content, author } = useLoaderData<PostProp>();
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-      <div className="px-6 md:px-8 py-8 border-b border-gray-100">
-        <p className="py-2 text-2xl font-bold text-gray-900 dark:text-gray-100">
-          {title}
-        </p>
-        <article className="prose dark:prose-dark max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
-        </article>
-      </div>
-      <div className="flex p-6 md:px-8 items-center text-base">
-        <img className="h-5 w-5 rounded-full mr-2"
-             src={author.profileUrl}
-             alt={`${author.name}의 프로필 이미지`} />
-        <span>{author.name}</span>
+    <div className="py-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+        <div className="px-6 md:px-8 py-8 border-b border-gray-100 dark:border-gray-700">
+          <p className="py-2 text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {title}
+          </p>
+          <article className="prose dark:prose-dark max-w-none">
+            <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
+          </article>
+        </div>
+        <div className="flex p-6 md:px-8 items-center text-base">
+          <img className="h-6 w-6 rounded-full mr-2"
+               src={author.profileUrl}
+               alt={`${author.name}의 프로필 이미지`} />
+          <span>{author.name}</span>
+        </div>
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const data = useLoaderData<IndexData>();
   return (
-    <div className="px-2">
+    <div className="px-2 md:px-4">
       <Header />
       <HeadingTitle>최신 글</HeadingTitle>
       <div className="my-8">
