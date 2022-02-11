@@ -16,7 +16,7 @@ type PostItemProp = {
 };
 
 export const PostItem = ({ post }: { post: PostItemProp }) => (
-  <div className="my-8 md:my-12" key={`post-${post.id}`}>
+  <div className="pb-8" key={`post-${post.id}`}>
     {/* 태그 영역 */}
     <div className="text-sm space-x-2">
       {post.tags.map((tag) => (
@@ -26,7 +26,7 @@ export const PostItem = ({ post }: { post: PostItemProp }) => (
 
     {/* 제목 영역 */}
     <Link to={`/posts/${post.id}`}>
-      <p className="my-2 text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 hover:opacity-75 hover:underline transition">
+      <p className="my-1 text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 hover:opacity-75 hover:underline transition">
         {post.title}
       </p>
     </Link>
@@ -34,7 +34,7 @@ export const PostItem = ({ post }: { post: PostItemProp }) => (
     {/* 작성자 영역 */}
     <div className="flex items-center text-sm">
       <img
-        className="h-4 w-4 md:h-6 md:w-6 rounded-full mr-2"
+        className="h-6 w-6 rounded-full mr-2"
         src={post.author.profileUrl}
         alt={`${post.author.name}의 프로필 이미지`}
       />

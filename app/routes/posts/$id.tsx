@@ -1,10 +1,10 @@
 import { json, LoaderFunction, useCatch, useLoaderData } from "remix";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
+import dayjs from "dayjs";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
 import { ErrorMessage } from "~/components/templates/error";
-import {HeadingSubtitle} from "~/components/atoms/heading";
 
 type PostData = {
   til_posts: {
@@ -14,6 +14,7 @@ type PostData = {
       display_name: string;
       profile_image: string;
     };
+    created_at: string;
   }[];
 };
 
@@ -24,6 +25,7 @@ type PostProp = {
     name: string;
     profileUrl: string;
   };
+  createdAt: Date;
 };
 
 const query = gql<PostData>`
@@ -35,6 +37,7 @@ const query = gql<PostData>`
         display_name
         profile_image
       }
+      created_at
     }
   }
 `;
@@ -46,13 +49,14 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
   }
 
   const post = data.til_posts[0];
-  return json({
+  return json<PostProp>({
     title: post.title,
     content: post.content,
     author: {
       name: post.author.display_name,
       profileUrl: post.author.profile_image,
     },
+    createdAt: new Date(post.created_at),
   });
 };
 
@@ -67,25 +71,28 @@ export function CatchBoundary() {
 }
 
 export default function Post() {
-  const { title, content, author } = useLoaderData<PostProp>();
+  const { title, content, author, createdAt } = useLoaderData<PostProp>();
   return (
-    <div className="py-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-        <div className="px-6 md:px-8 py-8 border-b border-gray-100 dark:border-gray-700">
-          <p className="py-2 text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
-            {title}
-          </p>
-          <article className="prose dark:prose-dark max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
-          </article>
-        </div>
-        <div className="flex p-6 md:px-8 items-center text-base">
-          <img className="h-6 w-6 rounded-full mr-2"
-               src={author.profileUrl}
-               alt={`${author.name}의 프로필 이미지`} />
-          <span>{author.name}</span>
+    <>
+      <div className="flex my-8">
+        <img className="h-12 w-12 rounded-full mr-4"
+             src={author.profileUrl}
+             alt={`${author.name}의 프로필 이미지`}
+        />
+        <div>
+          <p className="text-gray-900 dark:text-gray-100">by <span className="font-bold">{author.name}</span></p>
+          <p className="text-xs">{dayjs(createdAt).format("YYYY. MM. DD.")}</p>
         </div>
       </div>
-    </div>
+
+      <div className="my-8 px-6 md:px-8 py-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+        <div className="my-4 text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
+          {title}
+        </div>
+        <article className="prose dark:prose-dark max-w-none">
+          <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
+        </article>
+      </div>
+    </>
   );
 }
