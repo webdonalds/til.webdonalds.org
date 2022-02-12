@@ -18,14 +18,22 @@ type ProfileData = {
   webdonalds_users: {
     auth_id: string;
     display_name: string;
-    profile_image: string;
+    profile_image: string | null;
+    blog_url: string | null;
+    twitter_id: string | null;
+    instagram_id: string | null;
+    github_id: string | null;
   }[];
 };
 
 type ProfileProp = {
   authId: string;
   displayName: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
+  blogUrl: string | null;
+  twitterId: string | null;
+  instagramId: string | null;
+  githubId: string | null;
 };
 
 const query = gql<ProfileData>`
@@ -34,17 +42,28 @@ const query = gql<ProfileData>`
       auth_id
       display_name
       profile_image
+      blog_url
+      github_id
+      twitter_id
+      instagram_id
     }
   }
 `;
 
 const mutation = gql`
-  mutation ($authId: String, $displayName: String, $profileImageUrl: String) {
+  mutation (
+    $authId: String!, $displayName: String!, $profileImageUrl: String,
+    $blogUrl: String, $githubId: String, $twitterId: String, $instagramId: String,
+  ) {
     update_webdonalds_users(
       where: { auth_id: { _eq: $authId } },
       _set: {
         display_name: $displayName
         profile_image: $profileImageUrl
+        blog_url: $blogUrl
+        github_id: $githubId
+        twitter_id: $twitterId
+        instagram_id: $instagramId
       },
     ) {
       returning {
@@ -66,6 +85,10 @@ export const loader: LoaderFunction = async ({ request }) => {
     authId: user.auth_id,
     displayName: user.display_name,
     profileImageUrl: user.profile_image,
+    blogUrl: user.blog_url,
+    githubId: user.github_id,
+    twitterId: user.twitter_id,
+    instagramId: user.instagram_id,
   });
 };
 
@@ -75,6 +98,10 @@ export const action: ActionFunction = async ({ request }) => {
     authId: reqData.get("authId"),
     displayName: reqData.get("displayName"),
     profileImageUrl: reqData.get("profileImageUrl"),
+    blogUrl: reqData.get("blogUrl"),
+    githubId: reqData.get("githubId"),
+    twitterId: reqData.get("twitterId"),
+    instagramId: reqData.get("instagramId"),
   }).toPromise();
   if (error) {
     return { error };
@@ -95,7 +122,7 @@ export default function ModifyProfile() {
         />
         <LabeledInput
           name="profileImageUrl" type="text" label="프로필 사진 URL"
-          defaultValue={profile.profileImageUrl}
+          defaultValue={profile.profileImageUrl || undefined}
           onChange={(e) => setPreviewUrl(e.target.value)}
         />
         {previewUrl &&
@@ -104,6 +131,12 @@ export default function ModifyProfile() {
             <img className="h-20 w-20 rounded-full" src={previewUrl} alt="프로필 사진 미리보기" />
           </div>
         }
+        <LabeledInput name="blogUrl" type="text" label="블로그/홈페이지 주소" defaultValue={profile.blogUrl || undefined} />
+        <LabeledInput name="githubId" type="text" label="깃허브 아이디" defaultValue={profile.githubId || undefined} />
+        <LabeledInput name="twitterId" type="text" label="트위터 아이디" defaultValue={profile.twitterId || undefined} />
+        <LabeledInput name="instagramId" type="text" label="인스타그램 아이디"
+                      defaultValue={profile.instagramId || undefined}
+        />
         <input name="authId" type="hidden" value={profile.authId} />
         <SubmitButtons />
       </Form>
