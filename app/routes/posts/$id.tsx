@@ -5,13 +5,14 @@ import dayjs from "dayjs";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
 import { ErrorMessage } from "~/components/templates/error";
-import { Author } from "~/components/organisms/post/author";
+import { Author } from "~/components/organisms/post";
 
 type PostData = {
   til_posts: {
     title: string;
     content: string;
     author: {
+      id: number;
       display_name: string;
       profile_image: string;
       blog_url: string | null;
@@ -27,6 +28,7 @@ type PostProp = {
   title: string;
   content: string;
   author: {
+    id: number;
     name: string;
     profileUrl: string;
     blogUrl: string | null;
@@ -43,6 +45,7 @@ const query = gql<PostData>`
       title
       content
       author {
+        id
         display_name
         profile_image
         blog_url
@@ -66,6 +69,7 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
     title: post.title,
     content: post.content,
     author: {
+      id: post.author.id,
       name: post.author.display_name,
       profileUrl: post.author.profile_image,
       blogUrl: post.author.blog_url,
@@ -92,6 +96,7 @@ export default function Post() {
   return (
     <>
       <Author
+        id={author.id}
         name={author.name}
         profileUrl={author.profileUrl}
         blogUrl={author.blogUrl || undefined}

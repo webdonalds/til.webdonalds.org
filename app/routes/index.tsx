@@ -3,7 +3,7 @@ import { useLoaderData, json, Link } from "remix";
 import { gql } from "@urql/core";
 import { HeadingTitle } from "~/components/atoms/heading";
 import { Header } from "~/components/organisms/header";
-import { PostItem } from "~/components/organisms/postlist";
+import { PostListItem } from "~/components/organisms/postlist";
 import { client } from "~/lib/api/client";
 
 type IndexData = {
@@ -17,6 +17,7 @@ type IndexData = {
       };
     }[];
     author: {
+      id: number;
       display_name: string;
       profile_image: string;
     };
@@ -36,6 +37,7 @@ const query = gql<IndexData>`
         }
       }
       author {
+        id
         display_name
         profile_image
       }
@@ -56,12 +58,13 @@ export default function Index() {
       <Header />
       <>
         {data.til_posts.map((post) => (
-          <PostItem
+          <PostListItem
             key={`post-${post.id}`}
             post={{
               id: post.id,
               title: post.title,
               author: {
+                id: post.author.id,
                 name: post.author.display_name,
                 profileUrl: post.author.profile_image,
               },

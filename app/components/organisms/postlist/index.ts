@@ -1,3 +1,3 @@
-import { PostItem } from "./PostItem";
+import { PostListItem } from "./PostListItem";
 
-export { PostItem };
+export { PostListItem };
