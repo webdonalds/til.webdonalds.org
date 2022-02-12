@@ -95,12 +95,12 @@ export default function Author() {
   const { name, profileUrl, blogUrl, githubId, twitterId, instagramId, posts } = useLoaderData<AuthorProps>();
   return (
     <>
-      <div className="md:my-8">
+      <div className="mb-8 md:mt-8">
         <img className="my-4 mx-auto h-24 w-24 md:h-36 md:w-36 rounded-full"
              src={profileUrl}
              alt={`${name}의 프로필 이미지`}
         />
-        <p className="my-2 text-center text-3xl md:text-4xl font-bold">{name}</p>
+        <p className="my-2 text-center text-3xl md:text-4xl text-gray-900 dark:text-gray-100 font-bold">{name}</p>
         <p className="text-center text-base space-x-2">
           {blogUrl && <OuterLink url={blogUrl}>블로그</OuterLink>}
           {githubId && <OuterLink url={`https://github.com/${githubId}`}>깃허브</OuterLink>}
