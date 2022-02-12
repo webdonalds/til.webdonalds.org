@@ -26,6 +26,7 @@ module.exports = {
             h4: { color: theme('colors.gray.100') },
             code: { color: theme('colors.gray.300') },
             blockquote: { color: theme('colors.gray.600') },
+            pre: { backgroundColor: theme('colors.gray.900') },
           },
         },
       }),
