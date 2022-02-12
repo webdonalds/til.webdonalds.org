@@ -97,15 +97,15 @@ function Document({
   title?: string;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        {<title>{title || "TIL - by WebDonalds"}</title>}
+        <title>{title || "TIL - by WebDonalds"}</title>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-300 text-lg">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -116,9 +116,5 @@ function Document({
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-300 text-lg">
-      <div className="max-w-6xl mx-auto px-2 md:px-4">{children}</div>
-    </div>
-  );
+  return <div className="max-w-6xl mx-auto px-4 md:px-8">{children}</div>;
 }

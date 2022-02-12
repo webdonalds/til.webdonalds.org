@@ -6,7 +6,7 @@ export default function PostIndex() {
     <>
       <Header />
       <Link to="/">
-        <p className="py-4 font-bold hover:opacity-75 transition">
+        <p className="text-gray-900 dark:text-gray-100 font-bold hover:opacity-75 transition">
           ← 최신 글 목록
         </p>
       </Link>

@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   mode: "jit",
   content: ["./app/**/*.{ts,tsx}"],
@@ -10,19 +12,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Source: https://yeun.github.io/open-color/
-        gray: {
-          '000': '#f8f9fa',
-          100: '#f1f3f5',
-          200: '#e9ecef',
-          300: '#dee2e6',
-          400: '#ced4da',
-          500: '#adb5bd',
-          600: '#868e96',
-          700: '#495057',
-          800: '#343a40',
-          900: '#212529',
-        },
+        gray: colors.neutral,
       },
       typography: (theme) => ({
         dark: {
@@ -36,6 +26,7 @@ module.exports = {
             h4: { color: theme('colors.gray.100') },
             code: { color: theme('colors.gray.300') },
             blockquote: { color: theme('colors.gray.600') },
+            pre: { backgroundColor: theme('colors.gray.900') },
           },
         },
       }),
