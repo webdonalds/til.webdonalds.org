@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
 import { ErrorMessage } from "~/components/templates/error";
+import { Author } from "~/components/organisms/post/author";
 
 type PostData = {
   til_posts: {
@@ -13,6 +14,10 @@ type PostData = {
     author: {
       display_name: string;
       profile_image: string;
+      blog_url: string | null;
+      github_id: string | null;
+      twitter_id: string | null;
+      instagram_id: string | null;
     };
     created_at: string;
   }[];
@@ -24,18 +29,26 @@ type PostProp = {
   author: {
     name: string;
     profileUrl: string;
+    blogUrl: string | null;
+    githubId: string | null;
+    twitterId: string | null;
+    instagramId: string | null;
   };
   createdAt: Date;
 };
 
 const query = gql<PostData>`
-  query($postId: bigint) @cached {
+  query($postId: bigint) {
     til_posts(where: { id: { _eq: $postId } }, order_by: { id: desc }, limit: 1) {
       title
       content
       author {
         display_name
         profile_image
+        blog_url
+        github_id
+        twitter_id
+        instagram_id
       }
       created_at
     }
@@ -55,6 +68,10 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
     author: {
       name: post.author.display_name,
       profileUrl: post.author.profile_image,
+      blogUrl: post.author.blog_url,
+      githubId: post.author.github_id,
+      twitterId: post.author.twitter_id,
+      instagramId: post.author.instagram_id,
     },
     createdAt: new Date(post.created_at),
   });
@@ -74,17 +91,15 @@ export default function Post() {
   const { title, content, author, createdAt } = useLoaderData<PostProp>();
   return (
     <>
-      <div className="flex my-8">
-        <img className="h-12 w-12 rounded-full mr-4"
-             src={author.profileUrl}
-             alt={`${author.name}의 프로필 이미지`}
-        />
-        <div>
-          <p className="text-gray-900 dark:text-gray-100">by <span className="font-bold">{author.name}</span></p>
-          <p className="text-xs">{dayjs(createdAt).format("YYYY. MM. DD.")}</p>
-        </div>
-      </div>
-
+      <Author
+        name={author.name}
+        profileUrl={author.profileUrl}
+        blogUrl={author.blogUrl || undefined}
+        githubId={author.githubId || undefined}
+        twitterId={author.twitterId || undefined}
+        instagramId={author.instagramId || undefined}
+        createdAt={createdAt}
+      />
       <div className="my-8 px-6 md:px-8 py-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
         <div className="my-4 text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
           {title}
