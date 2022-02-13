@@ -19,6 +19,7 @@ type PostData = {
       github_id: string | null;
       twitter_id: string | null;
       instagram_id: string | null;
+      linked_in_id: string | null;
     };
     created_at: string;
   }[];
@@ -35,6 +36,7 @@ type PostProp = {
     githubId: string | null;
     twitterId: string | null;
     instagramId: string | null;
+    linkedInId: string | null;
   };
   createdAt: Date;
 };
@@ -52,6 +54,7 @@ const query = gql<PostData>`
         github_id
         twitter_id
         instagram_id
+        linked_in_id
       }
       created_at
     }
@@ -76,6 +79,7 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
       githubId: post.author.github_id,
       twitterId: post.author.twitter_id,
       instagramId: post.author.instagram_id,
+      linkedInId: post.author.linked_in_id,
     },
     createdAt: new Date(post.created_at),
   });
@@ -103,6 +107,7 @@ export default function Post() {
         githubId={author.githubId || undefined}
         twitterId={author.twitterId || undefined}
         instagramId={author.instagramId || undefined}
+        linkedInId={author.linkedInId || undefined}
         createdAt={createdAt}
       />
       <div className="my-8 px-6 md:px-8 py-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg">

@@ -23,6 +23,7 @@ type ProfileData = {
     twitter_id: string | null;
     instagram_id: string | null;
     github_id: string | null;
+    linked_in_id: string | null;
   }[];
 };
 
@@ -34,6 +35,7 @@ type ProfileProp = {
   twitterId: string | null;
   instagramId: string | null;
   githubId: string | null;
+  linkedInId: string | null;
 };
 
 const query = gql<ProfileData>`
@@ -46,6 +48,7 @@ const query = gql<ProfileData>`
       github_id
       twitter_id
       instagram_id
+      linked_in_id
     }
   }
 `;
@@ -53,7 +56,8 @@ const query = gql<ProfileData>`
 const mutation = gql`
   mutation (
     $authId: String!, $displayName: String!, $profileImageUrl: String,
-    $blogUrl: String, $githubId: String, $twitterId: String, $instagramId: String,
+    $blogUrl: String, $githubId: String, $twitterId: String,
+    $instagramId: String, $linkedInId: String,
   ) {
     update_webdonalds_users(
       where: { auth_id: { _eq: $authId } },
@@ -64,6 +68,7 @@ const mutation = gql`
         github_id: $githubId
         twitter_id: $twitterId
         instagram_id: $instagramId
+        linked_in_id: $linkedInId
       },
     ) {
       returning {
@@ -89,6 +94,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     githubId: user.github_id,
     twitterId: user.twitter_id,
     instagramId: user.instagram_id,
+    linkedInId: user.linked_in_id,
   });
 };
 
@@ -102,6 +108,7 @@ export const action: ActionFunction = async ({ request }) => {
     githubId: reqData.get("githubId"),
     twitterId: reqData.get("twitterId"),
     instagramId: reqData.get("instagramId"),
+    linkedInId: reqData.get("linkedInId"),
   }).toPromise();
   if (error) {
     return { error };
@@ -134,9 +141,8 @@ export default function ModifyProfile() {
         <LabeledInput name="blogUrl" type="text" label="블로그/홈페이지 주소" defaultValue={profile.blogUrl || undefined} />
         <LabeledInput name="githubId" type="text" label="깃허브 아이디" defaultValue={profile.githubId || undefined} />
         <LabeledInput name="twitterId" type="text" label="트위터 아이디" defaultValue={profile.twitterId || undefined} />
-        <LabeledInput name="instagramId" type="text" label="인스타그램 아이디"
-                      defaultValue={profile.instagramId || undefined}
-        />
+        <LabeledInput name="instagramId" type="text" label="인스타그램 아이디" defaultValue={profile.instagramId || undefined} />
+        <LabeledInput name="linkedInId" type="text" label="링크드인 프로필 아이디" defaultValue={profile.linkedInId || undefined} />
         <input name="authId" type="hidden" value={profile.authId} />
         <SubmitButtons />
       </Form>

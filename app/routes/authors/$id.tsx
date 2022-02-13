@@ -14,6 +14,7 @@ type AuthorData = {
     github_id: string | null;
     twitter_id: string | null;
     instagram_id: string | null;
+    linked_in_id: string | null;
   }[];
   til_posts: {
     id: number;
@@ -35,6 +36,7 @@ type AuthorProps = {
   githubId: string | null;
   twitterId: string | null;
   instagramId: string | null;
+  linkedInId: string | null;
   posts: {
     id: number;
     title: string;
@@ -55,6 +57,7 @@ const query = gql<AuthorData>`
       github_id
       twitter_id
       instagram_id
+      linked_in_id
     }
     til_posts(where: { author_id: { _eq: $authorId } }, order_by: { id: desc }) {
       id
@@ -82,6 +85,7 @@ export const loader: LoaderFunction = async ({ params }: DataFunctionArgs) => {
     githubId: author.github_id,
     twitterId: author.twitter_id,
     instagramId: author.instagram_id,
+    linkedInId: author.linked_in_id,
     posts: posts.map((p) => ({
       id: p.id,
       title: p.title,
@@ -92,7 +96,7 @@ export const loader: LoaderFunction = async ({ params }: DataFunctionArgs) => {
 };
 
 export default function Author() {
-  const { name, profileUrl, blogUrl, githubId, twitterId, instagramId, posts } = useLoaderData<AuthorProps>();
+  const { name, profileUrl, blogUrl, githubId, twitterId, instagramId, linkedInId, posts } = useLoaderData<AuthorProps>();
   return (
     <>
       <div className="mb-8 md:mt-8">
@@ -104,6 +108,7 @@ export default function Author() {
         <p className="text-center text-base space-x-2">
           {blogUrl && <OuterLink url={blogUrl}>블로그</OuterLink>}
           {githubId && <OuterLink url={`https://github.com/${githubId}`}>깃허브</OuterLink>}
+          {linkedInId && <OuterLink url={`https://www.linkedin.com/in/${linkedInId}`}>링크드인</OuterLink>}
           {twitterId && <OuterLink url={`https://twitter.com/${twitterId}`}>트위터</OuterLink>}
           {instagramId && <OuterLink url={`https://instagram.com/${instagramId}`}>인스타그램</OuterLink>}
         </p>
