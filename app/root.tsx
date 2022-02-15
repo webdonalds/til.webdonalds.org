@@ -3,6 +3,7 @@ import {
   Links,
   LiveReload,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -89,10 +90,22 @@ export function CatchBoundary() {
   );
 }
 
-function Document({
-  children,
-  title,
-}: {
+export const meta: MetaFunction = () => {
+  const title = "TIL by WebDonalds";
+  const description = "Today I Learned - by WebDonalds";
+  return {
+    "title": title,
+    "description": description,
+    "og:title": title,
+    "og:description": description,
+    "og:site_name": title,
+    "og:locale": "ko_KR",
+    "twitter:card": "summary",
+    "twitter:title": title,
+  };
+};
+
+function Document({ children }: {
   children: React.ReactNode;
   title?: string;
 }) {
@@ -101,7 +114,6 @@ function Document({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{title || "TIL - by WebDonalds"}</title>
         <Meta />
         <Links />
       </head>
