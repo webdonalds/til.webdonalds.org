@@ -1,7 +1,6 @@
-import { json, LoaderFunction, useCatch, useLoaderData } from "remix";
+import { json, LoaderFunction, MetaFunction, useCatch, useLoaderData } from "remix";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
-import dayjs from "dayjs";
 import { marked } from "marked";
 import { client } from "~/lib/api/client";
 import { ErrorMessage } from "~/components/templates/error";
@@ -25,7 +24,7 @@ type PostData = {
   }[];
 };
 
-type PostProp = {
+type PostProps = {
   title: string;
   content: string;
   author: {
@@ -68,7 +67,7 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
   }
 
   const post = data.til_posts[0];
-  return json<PostProp>({
+  return json<PostProps>({
     title: post.title,
     content: post.content,
     author: {
@@ -95,8 +94,24 @@ export function CatchBoundary() {
   );
 }
 
+export const meta: MetaFunction = ({ data }: { data: PostProps }) => {
+  const result: { [_: string]: string } = {
+    title: `${data.title} | TIL - by WebDonalds`,
+    description: `${data.title} | Today I Learned`,
+    "og:title": data.title,
+    "og:description": `${data.title} | Today I Learned`,
+    "twitter:title": data.title,
+    "twitter:description": `${data.title} | Today I Learned`,
+  };
+  if (data.author.twitterId) {
+    result["twitter:site"] = `@${data.author.twitterId}`;
+  }
+
+  return result;
+};
+
 export default function Post() {
-  const { title, content, author, createdAt } = useLoaderData<PostProp>();
+  const { title, content, author, createdAt } = useLoaderData<PostProps>();
   return (
     <>
       <Author
