@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Header } from "~/components/organisms/header";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { authenticator } from "~/services/auth.server";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 
 const query = gql`
   query($authId: String) {

@@ -2,7 +2,7 @@ import { Form, json, Link, LoaderFunction, useLoaderData } from "remix";
 import { gql } from "@urql/core";
 import { Button } from "~/components/atoms";
 import { HeadingSubtitle, HeadingTitle } from "~/components/atoms/heading";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 import { authenticator } from "~/services/auth.server";
 
 type AdminIndexData = {

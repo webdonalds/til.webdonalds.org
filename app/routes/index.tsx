@@ -4,7 +4,7 @@ import { gql } from "@urql/core";
 import { HeadingTitle } from "~/components/atoms/heading";
 import { Header } from "~/components/organisms/header";
 import { PostListItem } from "~/components/organisms/postlist";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 
 type IndexData = {
   til_posts: {

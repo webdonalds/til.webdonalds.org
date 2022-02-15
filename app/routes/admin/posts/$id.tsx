@@ -10,7 +10,7 @@ import {
 import { gql } from "@urql/core";
 import { PostEditor } from "~/components/organisms/postedit";
 import { AdminUserContext } from "~/contexts/AdminUser";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 import { HeadingSubtitle } from "~/components/atoms/heading";
 
 type PostProp = {

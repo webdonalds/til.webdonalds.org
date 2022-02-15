@@ -1,7 +1,7 @@
 import { json, LoaderFunction } from "remix";
 import { gql } from "@urql/core";
 import dayjs from "dayjs";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 
 type SitemapData = {
   til_posts: {
@@ -18,9 +18,6 @@ const query = gql<SitemapData>`
     }
   }
 `;
-
-const xmlPrefix = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-const xmlPostfix = `</urlset>`;
 
 export const loader: LoaderFunction = async () => {
   const { data } = await client.query<SitemapData>(query).toPromise();
@@ -39,6 +36,8 @@ export const loader: LoaderFunction = async () => {
     `;
   }).join("\n");
 
+  const xmlPrefix = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+  const xmlPostfix = `</urlset>`;
   const sitemap = `
   ${xmlPrefix}
   ${xmlUrls}

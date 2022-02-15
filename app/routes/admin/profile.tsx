@@ -11,7 +11,7 @@ import { gql } from "@urql/core";
 import { LabelText } from "~/components/atoms/form";
 import { HeadingSubtitle } from "~/components/atoms/heading";
 import { LabeledInput, SubmitButtons } from "~/components/molecules/form";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 import { authenticator } from "~/services/auth.server";
 
 type ProfileData = {

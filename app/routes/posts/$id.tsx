@@ -2,7 +2,7 @@ import { json, LoaderFunction, MetaFunction, useCatch, useLoaderData } from "rem
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
 import { marked } from "marked";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 import { ErrorMessage } from "~/components/templates/error";
 import { Author } from "~/components/organisms/post";
 

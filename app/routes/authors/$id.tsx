@@ -1,7 +1,7 @@
 import { json, LoaderFunction, useLoaderData } from "remix";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
-import { client } from "~/lib/api/client";
+import { client } from "~/lib/api/client.server";
 import { HeadingSubtitle, HeadingTitle } from "~/components/atoms/heading";
 import { OuterLink } from "~/components/molecules/link";
 import { PostListItem } from "~/components/organisms/postlist";
