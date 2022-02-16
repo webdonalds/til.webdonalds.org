@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 
-export function Comment() {
+type CommentProps = {
+  className?: string;
+}
+
+export function Comment({ className }: CommentProps) {
   useEffect(() => {
     if (!document || document.getElementsByClassName("giscus")[0].hasChildNodes()) {
       return;
@@ -24,5 +28,5 @@ export function Comment() {
     document.getElementsByClassName("giscus")[0].appendChild(script);
   });
 
-  return <div className="giscus" />;
+  return <div className={`giscus ${className || ""}`} />;
 }

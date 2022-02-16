@@ -134,7 +134,7 @@ export default function Post() {
         </article>
       </div>
 
-      <Comment />
+      <Comment className="my-8" />
     </>
   );
 }
