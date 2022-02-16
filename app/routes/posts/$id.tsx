@@ -4,7 +4,7 @@ import { gql } from "@urql/core";
 import { marked } from "marked";
 import { client } from "~/lib/api/client.server";
 import { ErrorMessage } from "~/components/templates/error";
-import { Author } from "~/components/organisms/post";
+import { Author, Comment } from "~/components/organisms/post";
 
 type PostData = {
   til_posts: {
@@ -133,6 +133,8 @@ export default function Post() {
           <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
         </article>
       </div>
+
+      <Comment />
     </>
   );
 }
