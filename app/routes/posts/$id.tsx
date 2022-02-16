@@ -129,7 +129,7 @@ export default function Post() {
         <div className="my-4 text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
           {title}
         </div>
-        <article className="prose dark:prose-dark max-w-none">
+        <article className="prose dark:prose-dark max-w-none break-words">
           <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
         </article>
       </div>
