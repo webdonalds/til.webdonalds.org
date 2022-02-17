@@ -1,7 +1,7 @@
 import { Form, json, Link, LoaderFunction, useLoaderData } from "remix";
 import { gql } from "@urql/core";
 import { Button } from "~/components/atoms";
-import { HeadingSubtitle, HeadingTitle } from "~/components/atoms/heading";
+import { HeadingSubtitle } from "~/components/atoms/heading";
 import { client } from "~/lib/api/client.server";
 import { authenticator } from "~/services/auth.server";
 
@@ -42,13 +42,15 @@ export default function AdminIndex() {
   const posts = useLoaderData<AdminIndexProp>();
   return (
     <>
-      <HeadingTitle>관리자 화면</HeadingTitle>
-      <div className="flex py-8 space-x-1">
+      <div className="flex my-8 space-x-1">
         <Link to="/admin/posts">
-          <Button text="새 글 쓰기" />
+          <Button text="새 글 쓰기" color="blue" />
         </Link>
         <Link to="/admin/profile">
           <Button text="프로필 편집" />
+        </Link>
+        <Link to="/admin/images">
+          <Button text="사진 관리" />
         </Link>
         <Form action="/callbacks/logout" method="post">
           <Button text="로그아웃" color="red" />

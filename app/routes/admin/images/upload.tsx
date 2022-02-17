@@ -9,29 +9,26 @@ import {
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { HeadingSubtitle } from "~/components/atoms/heading";
 import { LabeledInput, SubmitButtons } from "~/components/molecules/form";
+import { client } from "~/lib/api/images.server";
 
 export const action: ActionFunction = async ({ request }) => {
-  /**
-   * You can't use this yet due to bug of Remix.
-   * https://github.com/remix-run/remix/issues/1724
-   */
-  const uploadHandler = createMemoryUploadHandler({});
+  const uploadHandler = createMemoryUploadHandler({ maxFileSize: 10_000_000 });
+
   const reqData = await parseMultipartFormData(request, uploadHandler);
-  return redirect("/admin/images");
+  const uploadUrl = await client.generateUploadUrl(reqData.get("uploaderId") as string);
+  await client.uploadImage(uploadUrl, reqData.get("file") as File);
+
+  return redirect("/admin/images?action=update&result=success");
 };
 
-async function onSubmit() {
-
-  console.log("click");
-}
-
 export default function UploadImage() {
-  const { id: uploaderID } = useOutletContext<AdminUserContext>();
+  const { id: uploaderId } = useOutletContext<AdminUserContext>();
   return (
     <>
       <HeadingSubtitle>사진 올리기</HeadingSubtitle>
       <Form method="post" encType="multipart/form-data">
         <LabeledInput name="file" type="file" label="사진 첨부" />
+        <input name="uploaderId" type="hidden" value={uploaderId.toString()} />
         <SubmitButtons />
       </Form>
     </>
