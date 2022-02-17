@@ -2,6 +2,13 @@ type GenerateUploadUrlResponse = {
   url: string;
 };
 
+export type Image = {
+  id: string;
+  uploaderID: string;
+  thumbnailURL: string;
+  publicURL: string;
+};
+
 class ImagesApiClient {
   private readonly host: string;
   private readonly apiKey: string;
@@ -22,6 +29,15 @@ class ImagesApiClient {
       }),
     });
     return (await response.json() as GenerateUploadUrlResponse).url;
+  }
+
+  async listImages(): Promise<Image[]> {
+    const url = `${this.host}/v1/images`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { "X-Api-Key": this.apiKey },
+    });
+    return await response.json();
   }
 
   async uploadImage(url: string, image: File) {

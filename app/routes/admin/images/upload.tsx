@@ -18,7 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
   const uploadUrl = await client.generateUploadUrl(reqData.get("uploaderId") as string);
   await client.uploadImage(uploadUrl, reqData.get("file") as File);
 
-  return redirect("/admin/images?action=update&result=success");
+  return redirect("/admin/images?action=upload&result=success");
 };
 
 export default function UploadImage() {
