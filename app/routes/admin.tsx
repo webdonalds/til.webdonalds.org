@@ -1,10 +1,11 @@
-import { json, LoaderFunction, Outlet, useLoaderData } from "remix";
+import { json, Link, LoaderFunction, Outlet, useLoaderData } from "remix";
 import { gql } from "@urql/core";
 import { v4 as uuidv4 } from "uuid";
 import { Header } from "~/components/organisms/header";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { authenticator } from "~/services/auth.server";
 import { client } from "~/lib/api/client.server";
+import { HeadingTitle } from "~/components/atoms/heading";
 
 const query = gql`
   query($authId: String) {
@@ -61,6 +62,12 @@ export default function Admin() {
   return (
     <>
       <Header />
+      <Link to="/admin">
+        <p className="text-gray-900 dark:text-gray-100 font-bold hover:opacity-75 transition">
+          ← 첫 화면으로
+        </p>
+      </Link>
+      <HeadingTitle className="my-8">관리자 화면</HeadingTitle>
       <Outlet context={user} />
     </>
   );

@@ -8,7 +8,7 @@ type ButtonProp = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-type ButtonColor = "gray" | "red" | "blue";
+type ButtonColor = "gray" | "red" | "blue" | "green";
 
 export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
   let bgClass;
@@ -28,6 +28,11 @@ export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
     case "blue":
       bgClass = "bg-blue-500";
       shadowClass = "shadow-blue-500/50";
+      fontClass = "text-white";
+      break;
+    case "green":
+      bgClass = "bg-green-500";
+      shadowClass = "shadow-green-500/50";
       fontClass = "text-white";
       break;
   }
