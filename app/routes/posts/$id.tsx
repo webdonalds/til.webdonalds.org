@@ -94,14 +94,16 @@ export function CatchBoundary() {
   );
 }
 
-export const meta: MetaFunction = ({ data }: { data: PostProps }) => {
+export const meta: MetaFunction = ({ data, params }) => {
   const result: { [_: string]: string } = {
     title: `${data.title} | TIL - by WebDonalds`,
     description: `${data.title} | Today I Learned`,
     "og:title": data.title,
-    "og:description": `${data.title} | Today I Learned`,
+    "og:image": `https://og-images.webdonalds.workers.dev/til/${params.id}`,
+    "og:description": "Today I Learned",
     "twitter:title": data.title,
-    "twitter:description": `${data.title} | Today I Learned`,
+    "twitter:description": "Today I Learned",
+    "twitter:card": "summary_large_image",
   };
   if (data.author.twitterId) {
     result["twitter:site"] = `@${data.author.twitterId}`;
