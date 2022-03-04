@@ -1,3 +1,3 @@
-import { PostEditor } from "./PostEditor";
+import { PostForms } from "./PostForms";
 
-export { PostEditor };
+export { PostForms };

@@ -42,7 +42,7 @@ export default function AdminIndex() {
   const posts = useLoaderData<AdminIndexProp>();
   return (
     <>
-      <div className="flex my-8 space-x-1">
+      <div className="flex my-8">
         <Link to="/admin/posts">
           <Button text="새 글 쓰기" color="blue" />
         </Link>
@@ -58,17 +58,23 @@ export default function AdminIndex() {
       </div>
 
       <HeadingSubtitle>내 글 목록</HeadingSubtitle>
-      {posts.map((post) => (
-        <div className="py-1 space-x-1" key={`post-${post.id}`}>
-          <Link to={`/posts/${post.id}`}>
-            <Button text="보기" />
-          </Link>
-          <Link to={`/admin/posts/${post.id}`}>
-            <Button text="편집" />
-          </Link>
-          <span className="pl-2">{post.title}</span>
-        </div>
-      ))}
+      <table className="w-full table-auto text-left">
+        <tbody>
+        {posts.map((post) => (
+          <tr key={`post-${post.id}`}>
+            <td>{post.title}</td>
+            <td>
+              <Link to={`/posts/${post.id}`}>
+                <Button text="보기" />
+              </Link>
+              <Link to={`/admin/posts/${post.id}`}>
+                <Button text="편집" />
+              </Link>
+            </td>
+          </tr>
+        ))}
+        </tbody>
+      </table>
     </>
   );
 }
