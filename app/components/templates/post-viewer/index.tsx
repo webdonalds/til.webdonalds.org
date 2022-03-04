@@ -8,7 +8,7 @@ type PostViewProps = {
 export default function PostView({ data: post }: PostViewProps) {
   return (
     <>
-      <Author data={post.author} />
+      <Author data={post.author!!} />
       <Content data={post} />
       <Comment />
     </>

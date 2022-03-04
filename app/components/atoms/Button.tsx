@@ -42,7 +42,7 @@ export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
   return (
     <button
       type={type}
-      className={`px-4 py-2 ${bgClass} ${shadowClass} shadow-lg rounded-lg font-bold ${fontClass} ${opacityClass}`}
+      className={`inline mr-1 px-4 py-2 ${bgClass} ${shadowClass} shadow-lg rounded-lg font-bold ${fontClass} ${opacityClass}`}
       disabled={disabled}
       onClick={onClick}
     >

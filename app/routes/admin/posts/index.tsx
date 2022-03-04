@@ -1,6 +1,6 @@
 import { ActionFunction, Form, redirect, useOutletContext } from "remix";
 import { gql } from "@urql/core";
-import { PostEditor } from "~/components/organisms/postedit";
+import { PostForms } from "~/components/organisms/postedit";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { client } from "~/lib/api/client.server";
 import { HeadingSubtitle } from "~/components/atoms/heading";
@@ -39,7 +39,7 @@ export default function CreatePost() {
     <>
       <HeadingSubtitle>새 글 쓰기</HeadingSubtitle>
       <Form method="post">
-        <PostEditor authorId={authorId} />
+        <PostForms authorId={authorId} />
       </Form>
     </>
   );
