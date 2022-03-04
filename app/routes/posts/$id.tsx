@@ -5,6 +5,7 @@ import { client } from "~/lib/api/client.server";
 import { ErrorMessage } from "~/components/templates/error";
 import PostView from "~/components/templates/post-viewer";
 import { Post } from "~/models";
+import monokai from "highlight.js/styles/monokai.css";
 
 type PostData = {
   til_posts: {
@@ -69,6 +70,12 @@ export const loader: LoaderFunction = async (args: DataFunctionArgs) => {
     createdAt: new Date(post.created_at),
   });
 };
+
+export function links() {
+  return [
+    { rel: "stylesheet", href: monokai },
+  ];
+}
 
 export function CatchBoundary() {
   const { status } = useCatch();

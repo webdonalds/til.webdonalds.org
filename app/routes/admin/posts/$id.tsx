@@ -13,6 +13,7 @@ import { HeadingSubtitle } from "~/components/atoms/heading";
 import { PostEditor } from "~/components/templates/post-editor";
 import { client } from "~/lib/api/client.server";
 import { Post } from "~/models";
+import monokai from "highlight.js/styles/monokai.css";
 
 const query = gql`
   query ($postId: bigint) {
@@ -64,6 +65,12 @@ export const action: ActionFunction = async ({ request, params }) => {
   }
   return redirect("/admin");
 };
+
+export function links() {
+  return [
+    { rel: "stylesheet", href: monokai },
+  ];
+}
 
 export default function CreatePost() {
   const { id: authorId } = useOutletContext<AdminUserContext>();
