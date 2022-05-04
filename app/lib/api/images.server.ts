@@ -44,8 +44,7 @@ class ImagesApiClient {
     const formData = new FormData();
     formData.append("file", image);
 
-    const response = await fetch(url, { method: "POST", body: formData });
-    console.log(await response.text());
+    await fetch(url, { method: "POST", body: formData });
   }
 }
 

@@ -9,7 +9,7 @@ export const client = createClient({
   fetchOptions: { headers },
   exchanges: [
     dedupExchange,
-    requestPolicyExchange({ ttl: 60_000 }),
+    requestPolicyExchange({ ttl: 60_000, shouldUpgrade: () => true }),
     cacheExchange,
     fetchExchange,
   ],
