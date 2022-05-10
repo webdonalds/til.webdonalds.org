@@ -37,7 +37,7 @@ export function Button({ color, text, type, disabled, onClick }: ButtonProp) {
       break;
   }
 
-  const opacityClass = disabled ? "opacity-75" : "hover:opacity-75 transition";
+  const opacityClass = disabled ? "opacity-25 cursor-not-allowed" : "hover:opacity-75 transition";
 
   return (
     <button

@@ -79,12 +79,8 @@ export function links() {
 
 export function CatchBoundary() {
   const { status } = useCatch();
-  const message = (status === 404) ? "해당하는 주소를 찾을 수 없어요." : "오류가 발생했어요";
-  return (
-    <div className="my-8 px-4 md:px-8 py-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-      <ErrorMessage emoji="✋" message={message} />
-    </div>
-  );
+  const message = (status === 404) ? "해당하는 주소를 찾을 수 없어요." : "오류가 발생했어요.";
+  return <ErrorMessage emoji="✋" message={message} />;
 }
 
 export const meta: MetaFunction = ({ data, params }) => {
