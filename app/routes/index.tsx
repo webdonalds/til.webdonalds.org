@@ -39,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   return json<IndexProps>({
-    posts: data.til_posts.map((p) => ({
+    posts: data.til_posts.slice(0, 10).map((p) => ({
       id: p.id,
       title: p.title,
       tags: p.tags.map((t) => t.tag),
