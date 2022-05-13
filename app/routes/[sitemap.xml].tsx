@@ -1,4 +1,4 @@
-import { json, LoaderFunction } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
 import { gql } from "@urql/core";
 import dayjs from "dayjs";
 import { client } from "~/lib/api/client.server";

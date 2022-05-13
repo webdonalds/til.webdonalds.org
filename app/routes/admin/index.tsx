@@ -1,4 +1,5 @@
-import { Form, json, Link, LoaderFunction, useLoaderData } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 import { gql } from "@urql/core";
 import { Button } from "~/components/atoms";
 import { HeadingSubtitle } from "~/components/atoms/heading";

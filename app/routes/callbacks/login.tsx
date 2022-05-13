@@ -1,4 +1,5 @@
-import { Form, json, LoaderFunction, useCatch } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
+import { Form, useCatch } from "@remix-run/react";
 import { ErrorMessage } from "~/components/templates/error";
 import { authenticator } from "~/services/auth.server";
 import { Button } from "~/components/atoms";

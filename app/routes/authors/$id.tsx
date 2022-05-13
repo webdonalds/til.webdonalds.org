@@ -1,4 +1,5 @@
-import { json, LoaderFunction, useLoaderData } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
 import { client } from "~/lib/api/client.server";

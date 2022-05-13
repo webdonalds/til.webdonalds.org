@@ -1,4 +1,4 @@
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 
 export const Header = () => (
   <div className="py-16 hover:opacity-75 transition">

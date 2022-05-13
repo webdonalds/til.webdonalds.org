@@ -1,4 +1,4 @@
-import { Link, Outlet } from "remix";
+import { Link, Outlet } from "@remix-run/react";
 import { Header } from "~/components/organisms/header";
 
 export default function PostIndex() {

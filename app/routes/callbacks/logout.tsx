@@ -1,4 +1,4 @@
-import { ActionFunction, redirect } from "remix";
+import { ActionFunction, redirect } from "@remix-run/node";
 import { auth0Config } from "~/services/auth.server";
 import { destroySession, getSession } from "~/services/session.server";
 

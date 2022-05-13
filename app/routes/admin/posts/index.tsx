@@ -1,4 +1,5 @@
-import { ActionFunction, Form, redirect, useOutletContext } from "remix";
+import { ActionFunction, redirect } from "@remix-run/node";
+import { Form, useOutletContext } from "@remix-run/react";
 import { gql } from "@urql/core";
 import { PostForms } from "~/components/organisms/postedit";
 import { AdminUserContext } from "~/contexts/AdminUser";

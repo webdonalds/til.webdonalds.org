@@ -1,4 +1,5 @@
-import { json, Link, LoaderFunction, Outlet, useLoaderData } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { gql } from "@urql/core";
 import { v4 as uuidv4 } from "uuid";
 import { Header } from "~/components/organisms/header";
