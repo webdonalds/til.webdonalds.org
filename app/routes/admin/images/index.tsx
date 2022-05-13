@@ -1,4 +1,5 @@
-import { json, Link, LoaderFunction, useLoaderData, useSearchParams } from "remix";
+import { json, LoaderFunction } from "@remix-run/node";
+import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
 import { HeadingSubtitle } from "~/components/atoms/heading";
 import { Button } from "~/components/atoms";
 import { Alert } from "~/components/molecules/alert";
@@ -62,4 +63,4 @@ export default function AdminImageIndex() {
       </div>
     </>
   );
-};
+}

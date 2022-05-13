@@ -1,5 +1,6 @@
-import type { LoaderFunction } from "remix";
-import { useLoaderData, json, useSearchParams } from "remix";
+import type { LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useLoaderData, useSearchParams } from "@remix-run/react";
 import { gql } from "@urql/core";
 import { PageButtons } from "~/components/molecules/paging";
 import { Header } from "~/components/organisms/header";

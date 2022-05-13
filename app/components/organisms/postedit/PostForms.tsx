@@ -1,4 +1,4 @@
-import { Form } from "remix";
+import { Form } from "@remix-run/react";
 import { LabeledInput, LabeledTextarea, SubmitButtons } from "~/components/molecules/form";
 import { Post } from "~/models";
 

@@ -1,11 +1,5 @@
-import {
-  ActionFunction,
-  Form,
-  json,
-  LoaderFunction,
-  redirect,
-  useLoaderData,
-} from "remix";
+import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
+import { Form, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { gql } from "@urql/core";
 import { LabelText } from "~/components/atoms/form";

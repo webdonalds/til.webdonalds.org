@@ -1,12 +1,5 @@
-import {
-  ActionFunction,
-  Form,
-  json,
-  LoaderFunction,
-  redirect,
-  useLoaderData,
-  useOutletContext,
-} from "remix";
+import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
+import { Form, useLoaderData, useOutletContext } from "@remix-run/react";
 import { gql } from "@urql/core";
 import { AdminUserContext } from "~/contexts/AdminUser";
 import { HeadingSubtitle } from "~/components/atoms/heading";

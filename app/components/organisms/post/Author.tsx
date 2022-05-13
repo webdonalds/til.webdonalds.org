@@ -1,9 +1,9 @@
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 import { OuterLink } from "~/components/molecules/link";
-import { Author } from "~/models";
+import { Author as AuthorModel } from "~/models";
 
 type AuthorProps = {
-  data: Author;
+  data: AuthorModel;
 };
 
 export function Author({ data: author }: AuthorProps) {

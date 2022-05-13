@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useActionData, useTransition } from "remix";
+import { useActionData, useTransition } from "@remix-run/react";
 import { Button } from "~/components/atoms";
 
 export function SubmitButtons({ children }: { children?: ReactNode }) {

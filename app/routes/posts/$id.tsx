@@ -1,4 +1,5 @@
-import { json, LoaderFunction, MetaFunction, useCatch, useLoaderData } from "remix";
+import { json, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import { gql } from "@urql/core";
 import { client } from "~/lib/api/client.server";
@@ -105,7 +106,7 @@ export const meta: MetaFunction = ({ data, params }) => {
   return result;
 };
 
-export default function Post() {
+export default function PostById() {
   const post = useLoaderData<Post>();
   return <PostView data={post} />;
 }
