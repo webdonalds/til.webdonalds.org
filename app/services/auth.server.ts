@@ -1,4 +1,5 @@
-import { Auth0Strategy, Authenticator } from "remix-auth";
+import { Authenticator, Strategy } from "remix-auth";
+import { Auth0Strategy } from "remix-auth-auth0";
 import { sessionStorage } from "~/services/session.server";
 import { Auth0User } from "~/models";
 
@@ -13,11 +14,11 @@ export const auth0Config = {
 export const authenticator = new Authenticator<Auth0User>(sessionStorage);
 
 authenticator.use(
-  new Auth0Strategy<Auth0User>(auth0Config, async (_1, _2, _3, profile) => {
+  new Auth0Strategy<Auth0User>(auth0Config, async ({ profile }) => {
     return {
       id: profile.id,
       displayName: profile.displayName,
     };
-  }),
+  }) as Strategy<Auth0User, never>,
   "auth0",
 );
